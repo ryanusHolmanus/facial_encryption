@@ -1,3 +1,5 @@
+#useful guide: https://nitratine.net/blog/post/encryption-and-decryption-in-python/#encrypting-and-decrypting-files
+
 from cryptography.fernet import Fernet
 import sys
 

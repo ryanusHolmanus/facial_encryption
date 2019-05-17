@@ -1,3 +1,11 @@
+UNDER DEVELOPMENT!!!!
+
+
+SOME SCRIPTS WORK...
+FACE DETECTION AND EYE EXTRACTION
+ALSO BASIC FILE ENCRYPTION AND DECRYPTION
+NO DAUGMAN ALGORITHM IMPLEMENTED YET.
+
 #Note, this was build for aarch64 architecture on Lenovo C330 chromebook running Linux Crouton.  The Mediatek CPU architecture
 #Is rare and opencv needed to be cross-compiled for the architecture to operate.
 #OpenCV4 was built from source for cross-compilation, After this, I was able to install opencv using apt-get. 

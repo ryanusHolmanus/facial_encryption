@@ -4,7 +4,9 @@ UNDER DEVELOPMENT!!!!
 SOME SCRIPTS WORK...
 FACE DETECTION AND EYE EXTRACTION
 ALSO BASIC FILE ENCRYPTION AND DECRYPTION
-NO DAUGMAN ALGORITHM IMPLEMENTED YET.
+NO DAUGMAN ALGORITHM IMPLEMENTED YET
+
+BIGGEST DIFFICULTY IS FINDING DAUGMAN PYTHON SCRIPT FOR aarch64 architecture.  I can implement the algorithm by writing the code and referencing the published article, but I believe the algorithm requires the iris coordinates.  I most recently worked to use hough circle detection from the extracted eye image to estimate the location of the pupil and iris in addition to the pupil diameter.  Then give an approximate parameters for to feed to the Daugman algorithm for processing.  The hough circle algorithm is not working well enough to detect the iris as a circle in the image.
 
 #Note, this was build for aarch64 architecture on Lenovo C330 chromebook running Linux Crouton.  The Mediatek CPU architecture
 #Is rare and opencv needed to be cross-compiled for the architecture to operate.

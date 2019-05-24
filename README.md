@@ -1,5 +1,7 @@
 UNDER DEVELOPMENT!!!!
 
+The program currently opens the PC webcam and takes a snapshot of the user.  If the snapshot matches the facial image specified from a separate file, then the input file will be encrypted and decrypted to a separate file.
+
 This is temporary usage and will be changed soon.....
 This example uses facial recognition to encrypt and decrypt file. 
 I have not finished the iris recognition function.

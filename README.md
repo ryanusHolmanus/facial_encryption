@@ -1,8 +1,9 @@
 UNDER DEVELOPMENT!!!!
 
 This is temporary usage and will be changed soon.....
-This example uses facial recognition to encrypt and decrypt file. I have not finished the iris recognition function.
-The facial recognition feature is another github project:  https://github.com/ageitgey/face_recognition
+This example uses facial recognition to encrypt and decrypt file. 
+I have not finished the iris recognition function.
+The facial recognition feature is another github project:  https://github.com/ageitgey/face_recognition.
 Two lines of code will most likely need to be change:
 1.  cap = cv2.VideoCapture(4)  --> will likely be a different device number
 2.  known_image = face_recognition.load_image_file("/home/rhh/progs/rhh_iris/me.jpg")

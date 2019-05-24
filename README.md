@@ -5,8 +5,9 @@ This example uses facial recognition to encrypt and decrypt file. I have not fin
 The facial recognition feature is another github project:  https://github.com/ageitgey/face_recognition
 Two lines of code will most likely need to be change:
 1.  cap = cv2.VideoCapture(4)  --> will likely be a different device number
-2.  known_image = face_recognition.load_image_file("/home/rhh/progs/rhh_iris/moi/n_40.png")
+2.  known_image = face_recognition.load_image_file("/home/rhh/progs/rhh_iris/me.jpg")
     known image is the image to compare the snapshot against to determine if the person in the video is the desired person....
+    This photo is not included in the project files, but should be a facial image of the user.
 Also, the encryption key is extremely basic....
 
 python eye_extract.py {input image file} {output encrypted filename} {output decrypted filename}

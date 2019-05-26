@@ -3,7 +3,7 @@ UNDER DEVELOPMENT!!!!  BACKUP FILES BEFORE USING.
 This program allows file encryption and decryption base on facial recognition.
 
 Use the following command to open the GUI:
-python iris_gui.py
+python facial_gui.py
 
 First, a image must be selected to be used as the verification key.  
 This is done by seleting the command from the Tools menu.

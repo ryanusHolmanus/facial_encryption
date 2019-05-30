@@ -7,7 +7,6 @@ python facial_gui.py 'device number'
 
 find webcam device with ls /dev/video*
 for instance, if your webcam is /dev/video4, use this command.
-
 python facial_gui.py 4
 
 First, a image must be selected to be used as the verification key.  
@@ -19,11 +18,6 @@ Second, the user must be within the Green Box to take a snapshot.  The on-screen
 and the user can press the Snapshot button to grab the frame at this time.  The debug terminal will show if there was 
 a positive match. If a positive match was determine, files can be encrypted or decrypted.
 
-Only works in single session.  The encryption and decryption key is regenerated each time and encrypted files from a previous
-session cannot be decrypted in the next session.
-
-Moved from command line to GUI.  
-Also only support facial recognition, not iris recognition.
 
 The facial recognition feature is another github project:  https://github.com/ageitgey/face_recognition
 

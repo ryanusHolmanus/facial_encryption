@@ -3,7 +3,11 @@ UNDER DEVELOPMENT!!!!  BACKUP FILES BEFORE USING.
 This program allows file encryption and decryption base on facial recognition.
 
 Use the following command to open the GUI:
-python facial_gui.py
+python facial_gui.py 'device number'
+
+find webcam device with ls /dev/video*
+for instance, if your webcam is /dev/video4, use this command.
+python facial_gui.py 4
 
 First, a image must be selected to be used as the verification key.  
 This is done by seleting the command from the Tools menu.
@@ -37,10 +41,12 @@ I had to set these as my default configurations.
 After installing with apt-get and resetting the defaults configurations, I was able to import cv2 in Python.
 And now the OpenCV commands work as expected in Python, but the tests and samples do not work from the CLI.
 
-To Do:
-Menu option to Set default video device path.  Allow to be saved to subsequent sessions.
-Reconfigure encryption key to remain the same for subsequent sessions.
+To Do: 
+save encryption key as salt.
+The bytes from the image pixels itself should be the encryption key.
 Allow encyption key to be reset and re-encrypt encrypted files with new encryption key.
 Create Functions to encrypt and decrypt all files in directory.
 Remove original files after encrypted.
+
+
 

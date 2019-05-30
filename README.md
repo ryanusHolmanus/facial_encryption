@@ -26,10 +26,6 @@ Also only support facial recognition, not iris recognition.
 
 The facial recognition feature is another github project:  https://github.com/ageitgey/face_recognition
 
-Two lines of code will most likely need to be change:
-1.  cap = cv2.VideoCapture(4)  --> will likely be a different device number
-    Should make user select device if default is faulty.  And set default device.
-
 BIGGEST DIFFICULTY IS FINDING DAUGMAN PYTHON SCRIPT FOR aarch64 architecture. 
 
 Note, this was build for aarch64 architecture on Lenovo C330 chromebook running Linux Crouton.  The Mediatek CPU architecture
@@ -47,3 +43,6 @@ The bytes from the image pixels itself should be the encryption key.
 Allow encyption key to be reset and re-encrypt encrypted files with new encryption key.
 Create Functions to encrypt and decrypt all files in directory.
 Remove original files after encrypted.
+
+
+

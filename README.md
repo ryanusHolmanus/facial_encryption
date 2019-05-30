@@ -47,6 +47,3 @@ The bytes from the image pixels itself should be the encryption key.
 Allow encyption key to be reset and re-encrypt encrypted files with new encryption key.
 Create Functions to encrypt and decrypt all files in directory.
 Remove original files after encrypted.
-
-
-

@@ -7,6 +7,7 @@ python facial_gui.py 'device number'
 
 find webcam device with ls /dev/video*
 for instance, if your webcam is /dev/video4, use this command.
+
 python facial_gui.py 4
 
 First, a image must be selected to be used as the verification key.  

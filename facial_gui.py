@@ -16,6 +16,7 @@ else:
     import PySimpleGUI27 as sg
 import base64
 from sys import exit as exit
+import hashlib, uuid
 
 
 #key = Fernet.generate_key()
@@ -124,22 +125,60 @@ def SecondForm():
 
 
 def main():
+
+
+
+
     try:
-        fh = open('./mykey.key', 'rb')
-        key = fh.read()  # The key will be type bytes
+        #fh = open('./mykey.key', 'rb')
+        #key = fh.read()  # The key will be type bytes
+        #fh.close()
+        #f = Fernet(key)
+
+        fh = open('./salt.key', 'rb')
+        salt=fh.read()
         fh.close()
+        #password = fh.read()
+        password = b"password"
+        #salt = os.urandom(16)
+        kdf = PBKDF2HMAC(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=salt,
+            iterations=100000,
+            backend=default_backend()
+        )
+        key = base64.urlsafe_b64encode(kdf.derive(password))
         f = Fernet(key)
+
         print("key file exists")
         print("loading key from file.")
     except:
-        key = Fernet.generate_key()
-        # with open('./mykey.key','wb') as fille:
-        #    fille.write(key)
-        fille = open('./mykey.key', 'wb')
-        fille.write(key)
-        fille.close()
+        ##key = Fernet.generate_key()
+        ## with open('./mykey.key','wb') as fille:
+        ##    fille.write(key)
+        #fille = open('./mykey.key', 'wb')
+        #fille.write(key)
+        #fille.close()
         print("key file not found")
         print("new key generated.")
+        #f = Fernet(key)
+
+        ##fh = open('./salt.key', 'rb')
+        # password = fh.read()
+        password = b"password"
+        salt = os.urandom(16)
+        bfile = open('./salt.key', 'wb')
+        bfile.write(salt)
+        bfile.close()
+        kdf = PBKDF2HMAC(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=salt,
+            iterations=100000,
+            backend=default_backend()
+        )
+        key = base64.urlsafe_b64encode(kdf.derive(password))
         f = Fernet(key)
 
     sg.ChangeLookAndFeel('LightGreen')
@@ -166,13 +205,19 @@ def main():
     window.Layout(layout).Finalize()
     av = sys.argv[1]
     capdevice = int(av)
+    keyfile = ''
     try:
         face_cascade = cv2.CascadeClassifier('/usr/local/share/opencv4/haarcascades/haarcascade_frontalface_default.xml')
         cap = cv2.VideoCapture(capdevice)
         keyflag = 0
         snapflag = 0
         decencflag = 0
-        keyfilename = ''
+        keyfilename = './me.jpg'
+        try:
+            known_image = face_recognition.load_image_file(keyfilename)
+            keyflag = 1
+        except:
+            print('no default image file found.')
         while True:
             event, values = window.Read(timeout=0, timeout_key='timeout')
             if event == 'Snapshot':

@@ -1,6 +1,10 @@
 UNDER DEVELOPMENT!!!!  BACKUP FILES BEFORE USING.  
 
-This program allows file encryption and decryption base on facial recognition.
+This program allows file encryption and decryption base on facial recognition.  Typed password must entered before
+facial recognition can be performed.  Current passphrase is "password".  Will be changed soon.
+Now the program requires both correct password to be entered and facial recognition to be performed to decrypt
+the encrypted files.  The passwords are not stored in the directory.   They are combined with salt phrases to protect
+against rainbow tables.
 
 Use the following command to open the GUI:
 python facial_gui.py 'device number'

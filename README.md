@@ -39,6 +39,3 @@ perhaps use verification image as password phase.
 Allow encyption key to be reset and re-encrypt encrypted files with new encryption key.
 Create Functions to encrypt and decrypt all files in directory.
 Remove original files after encrypted.
-
-
-

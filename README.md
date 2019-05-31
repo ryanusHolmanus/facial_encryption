@@ -34,8 +34,8 @@ After installing with apt-get and resetting the defaults configurations, I was a
 And now the OpenCV commands work as expected in Python, but the tests and samples do not work from the CLI.
 
 To Do: 
-save encryption key as salt.
-The bytes from the image pixels itself should be the encryption key.
+use salt and pepper rather than only salt.
+perhaps use verification image as password phase.
 Allow encyption key to be reset and re-encrypt encrypted files with new encryption key.
 Create Functions to encrypt and decrypt all files in directory.
 Remove original files after encrypted.

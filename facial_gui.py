@@ -86,19 +86,6 @@ def load_input(fn):
     return data
 
 
-def fr_enc():
-    akey()
-    fn = sys.argv[1]
-    print("loading input file")
-    data=load_input(fn)
-    print('encrypting file.')
-    enc_file(data)
-    print('decrypting file')
-    dec_file()
-    print('finished')
-    return
-
-
 def detect_faces(img, cascade):
     rects = cascade.detectMultiScale(img, scaleFactor=1.3, minNeighbors=4, minSize=(30, 30),
                                      flags=cv2.CASCADE_SCALE_IMAGE)
@@ -123,12 +110,7 @@ def SecondForm():
     window = sg.Window('Second Form').Layout(layout)
     b, v = window.Read()
 
-
-def main():
-
-
-
-
+def init_encryption(password):
     try:
         #fh = open('./mykey.key', 'rb')
         #key = fh.read()  # The key will be type bytes
@@ -139,7 +121,7 @@ def main():
         salt=fh.read()
         fh.close()
         #password = fh.read()
-        password = b"password"
+        #password = b"password"
         #salt = os.urandom(16)
         kdf = PBKDF2HMAC(
             algorithm=hashes.SHA256(),
@@ -166,7 +148,7 @@ def main():
 
         ##fh = open('./salt.key', 'rb')
         # password = fh.read()
-        password = b"password"
+        #password = b"password"
         salt = os.urandom(16)
         bfile = open('./salt.key', 'wb')
         bfile.write(salt)
@@ -180,7 +162,13 @@ def main():
         )
         key = base64.urlsafe_b64encode(kdf.derive(password))
         f = Fernet(key)
+    return f
 
+
+def main():
+    password = b""
+    #f = init_encryption(password)
+    passflag = 0
     sg.ChangeLookAndFeel('LightGreen')
     sg.SetOptions(element_padding=(0, 0))
 
@@ -193,6 +181,8 @@ def main():
     # define the window layout
     layout = [[sg.Menu(menu_def, tearoff=False, pad=(10,1))],
               [sg.Image(filename='', key='image'), sg.Output(size=(20, 2))],
+              [sg.Text('Enter Password', size = (15,1))],
+              [sg.ReadButton('Submit'), sg.InputText('', key='in1', do_not_clear=True, size=(15, 1))],
               [sg.ReadButton('Snapshot'), sg.ReadButton('Encrypt'), sg.ReadButton('Decrypt')]
               ]
 
@@ -221,16 +211,19 @@ def main():
         while True:
             event, values = window.Read(timeout=0, timeout_key='timeout')
             if event == 'Snapshot':
-                #filename = sg.PopupGetFile('Save Settings', save_as=True, no_window=True)
-                #window.SaveToDisk(filename)
-                # save(values)
-                if keyflag==1:
-                    snapflag=1;
+                if passflag==1:
+                    #filename = sg.PopupGetFile('Save Settings', save_as=True, no_window=True)
+                    #window.SaveToDisk(filename)
+                    # save(values)
+                    if keyflag==1:
+                        snapflag=1;
+                    else:
+                        print('---------')
+                        print("Error Making Snapshot.")
+                        print("Has the image key been set?")
+                        print('---------')
                 else:
-                    print('---------')
-                    print("Error Making Snapshot.")
-                    print("Has the image key been set?")
-                    print('---------')
+                    print('Enter password.')
             elif event == 'About...':
                 window.Disappear()
                 sg.Popup('About this program', 'Version 1.0', 'PySimpleGUI rocks...', grab_anywhere=True)
@@ -258,9 +251,22 @@ def main():
                 if decencflag == 1:
                     in_decfilename = sg.PopupGetFile('file to open', no_window=True)
                     print("File Decrypted.", in_decfilename)
-                    dec_file(in_decfilename,f)
+                    try:
+                        dec_file(in_decfilename,f)
+                    except:
+                        print("Error decryptiing.")
+                        print("Password probably incorrect.")
                 else:
                     print('No Facial Recognition.')
+            elif event == 'Submit':
+                passflag=1
+                query = values['in1'].rstrip()
+                print("Password Entered.")
+                #password = b"password"
+                password = bytes(query)
+                print(query)
+                print(password)
+                f = init_encryption(password)
             elif event in ['Exit', None]:
                 print("Exit")
                 break
